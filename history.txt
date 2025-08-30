@@ -1,0 +1,8 @@
+访问github：
+在执行git clone操作时，如果使用http url，会重定向到github的登录界面，但是这个界面会显示请升级vscode，推测是code server本身使用的vscode版本存在问题，于是使用转而使用ssh url
+首先code server会响应找不到公钥。发现是因为.ssh文件夹并没有被挂载到容器上。然而即便在docker run的时候挂载了，也会有问题。
+code server会一直显示permission denied，后来发现是docker在运行code server时，容器的用户身份并不是root，无法访问公钥。
+deepseek告诉我可能是code server支持以root身份运行，于是告诉我很多其他方法。首先是给容器生成一份独立的ssh密钥。但是这样做很不方便，就我debug的过程可能得往github里塞10个ssh了。
+后来在自己鼓捣的时候发现如果给私钥的权限设为所有用户可见，容器就可以正常clone了，但是抱着怀疑的心态询问了ds，果然发现这是非常危险的操作，这意味着所有访问这个服务器的人都可以看到我的私钥。
+后来ds告诉我可以使用ssh代理转发。就我目前粗浅的理解大概就是将code server作为ssh通信的跳板，将github的询问转发到宿主机上，就可以正常访问了。听起来很聪明，但是很可惜还是permission denied。
+最后我意外发现了可以使用-u root指令来强制指定以root用户身份运行容器。然后发现他可以成功访问了。非常的可疑。
