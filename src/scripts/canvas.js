@@ -24,8 +24,8 @@ class Ball {
         this.radius = Math.random() * 20 + 10;
         this.x = Math.random() * (canvas.width - 2 * this.radius) + this.radius;
         this.y = Math.random() * (canvas.height - 2 * this.radius) + this.radius;
-        this.dx = (Math.random() - 0.5) * 2;
-        this.dy = (Math.random() - 0.5) * 2;
+        this.dx = (Math.random() - 0.5);
+        this.dy = (Math.random() - 0.5);
         this.color = `hsla(193, 95%, 56%, ${Math.random() * 0.5})`;
     }
 
@@ -70,3 +70,9 @@ function animate(currentTime) {
 }
 
 animate();
+
+window.addEventListener("resize", () => {
+    resizeCanvas();
+    animate();
+    drawBackground();
+});

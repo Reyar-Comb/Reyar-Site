@@ -1,0 +1,39 @@
+.video-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+video {
+    width: 100%;
+    height: auto;
+    display: block;
+    background-color: black;
+    transition: all 0.3s ease;
+    
+}
+
+video::-webkit-media-controls {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+video::-webkit-media-controls-panel {
+    padding: 0 10px;
+}
+
+.video-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* 响应式布局 */
+@media (max-width: 768px) {
+    .video-container {
+        width: 95%;
+        margin: 0 auto;
+    }
+}
