@@ -10,3 +10,4 @@ deepseek告诉我可能是code server支持以root身份运行，于是告诉我
 root身份执行是不对的，非常危险。改用普通用户。宁可多生成几次ssh key。9.6
 
 9.9 成功在容器上装了clash，然后配置docker为host模式后达成在容器中无痛访问github。虽然这样做好像会有些安全问题。
+9.10 没有继续项目，打算先尝试在服务器上部署qqbot。但是docker非常难学，sad
